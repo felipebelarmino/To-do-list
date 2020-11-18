@@ -1,11 +1,11 @@
 carregarLocalStorage();
-const lista = [];
+insereElementoNaLista();
+let lista = [];
 // Insere elemento na lista
 function insereElementoNaLista() {
   let inputText = document.getElementById("texto-tarefa").value;
   let li_ID = document.getElementById("lista-tarefas");
-  let Item = document.createElement("li");
-  Item.classList.add("list-item");
+  let Item = document.createElement("li");  
   let ultimoElemento;
   //Verifica se o input text está vazio
   if (inputText !== "") {
