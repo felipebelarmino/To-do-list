@@ -1,6 +1,10 @@
 carregarLocalStorage();
-insereElementoNaLista();
+
 let lista = [];
+let listaLi = document.querySelectorAll('li').length
+for (let i = 0; i < listaLi; i++){
+  lista.push(document.querySelectorAll('li')[i].innerText)
+}
 // Insere elemento na lista
 function insereElementoNaLista() {
   let inputText = document.getElementById("texto-tarefa").value;
@@ -182,4 +186,4 @@ function carregarLocalStorage() {
   if (storage) {
     listaInternaSave.innerHTML = storage;
   }
-} 
+} insereElementoNaLista();
