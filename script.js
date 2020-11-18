@@ -1,4 +1,6 @@
-let lista = [];
+carregarLocalStorage();
+const lista = [];
+// Insere elemento na lista
 function insereElementoNaLista() {
   let inputText = document.getElementById("texto-tarefa").value;
   let li_ID = document.getElementById("lista-tarefas");
@@ -16,9 +18,8 @@ function insereElementoNaLista() {
     alert("Preencha a lista com algum item!");
   }
   setColor();
-  doubleClick(Item);
+  doubleClick(Item);    
 }
-// Ao clicar no botão salva o texto na lista e apaga conteúdo do input
 document.getElementById("criar-tarefa").onclick = function () {
   insereElementoNaLista();
 };
@@ -46,7 +47,6 @@ document.getElementById("mover-cima").addEventListener("click", function () {
         let itemPosteriorText = document.querySelector(".list-item-active")
           .previousElementSibling.innerText;
         let aText = itemPosteriorText;
-
         itemPosterior.className = "list-item-active";
         itemPosterior.innerText = itemAtualText;
         itemAtual.className = "list-item";
@@ -116,7 +116,7 @@ function setColor() {
   }
 }
 //Ao clicar duas vezes o item recebe a classe completed
-function doubleClick(item) {
+function doubleClick(item) {  
   item.addEventListener("dblclick", function (event) {
     if (item.className !== "completed") {
       event.target.className = "completed";
@@ -139,9 +139,8 @@ let botaoApagaSelecionados = document.querySelector("#remover-finalizados");
 botaoApagaSelecionados.onclick = () => {
   let itensDalista = document.querySelectorAll("li");
   let listaInterna = document.querySelector("#lista-tarefas");
-
   if (lista.length != 0) {
-    if (confirm("\t\n Deseja apagar as tarefas concluídas? \t\n")) {
+    if (confirm("\t\n Deseja apagar as tarefas selecionadas? \t\n")) {
       for (let i = 0; i < itensDalista.length; i++) {
         if (itensDalista[i].className === "completed") {
           listaInterna.removeChild(itensDalista[i]);
@@ -171,3 +170,16 @@ botaoApagaTarefaSelecionada.onclick = () => {
     alert("\t Não há itens na lista! \t");
   }
 };
+let botaoSalvar = document.getElementById('salvar-tarefas')
+botaoSalvar.onclick = () => {  
+  let listaInternaSave = document.getElementById('lista-tarefas')
+  localStorage.clear();
+  localStorage.setItem('lista', listaInternaSave.innerHTML);
+}
+function carregarLocalStorage() {
+  let listaInternaSave = document.getElementById('lista-tarefas')
+  let storage = localStorage.getItem('lista');
+  if (storage) {
+    listaInternaSave.innerHTML = storage;
+  }
+} 
